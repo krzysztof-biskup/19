@@ -1,32 +1,41 @@
 'use strict';
 
-const v1 = 'Hello';
-const v2 = 'World';
+var v1 = 'Hello';
+var v2 = 'World';
 
-console.log(`${v1} ${v2}`);
+console.log(v1 + ' ' + v2);
 
-
-const multiply = (a, b = '1') => console.log(a * b);
+var multiply = function multiply(a) {
+  var b = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '1';
+  return console.log(a * b);
+};
 multiply(10);
 
-const average = [2, 3, 2, 3] // 4
+var average = [2, 3, 2, 3]; // 4
 console.log(average);
 
-const averageScore = (...numbers) => numbers.reduce((a,b) => a + b) / numbers.length;
+var averageScore = function averageScore() {
+  for (var _len = arguments.length, numbers = Array(_len), _key = 0; _key < _len; _key++) {
+    numbers[_key] = arguments[_key];
+  }
 
+  return numbers.reduce(function (a, b) {
+    return a + b;
+  }) / numbers.length;
+};
 
+var string = averageScore.apply(undefined, average).toFixed(2);
 
-let string = averageScore(...average).toFixed(2);
-
-let test = Number(string);
+var test = Number(string);
 console.log(test);
 
+var grades = [1, 5, 5, 5, 4, 3, 3, 2, 1];
 
-const grades = [1, 5, 5, 5, 4, 3, 3, 2, 1]
+console.log(averageScore.apply(undefined, grades).toFixed(2));
 
-console.log(averageScore(...grades).toFixed(2));
+var weird = [1, 4, 'Iwona', false, 'Nowak'];
+var second = weird[2],
+    fourth = weird[4];
 
-const weird = [1, 4, 'Iwona', false, 'Nowak']
-const [ , ,second, ,fourth] = weird;
 
 console.log(second, fourth);
